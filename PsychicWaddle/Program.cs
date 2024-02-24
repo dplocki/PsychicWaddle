@@ -4,6 +4,7 @@ namespace AutoMapperDemo
 {
     public class Employee
     {
+        public IEnumerable<string> SomeCollection { get; set; }
         public string Name { get; set; }
         public int Salary { get; set; }
         public string Address { get; set; }
@@ -12,6 +13,7 @@ namespace AutoMapperDemo
 
     public class EmployeeDTO
     {
+        public IEnumerable<string> SomeCollection { get; set; }
         public string Name { get; set; }
         public int Salary { get; set; }
         public string Address { get; set; }
@@ -45,7 +47,12 @@ namespace AutoMapperDemo
                 Name = "James",
                 Salary = 20000,
                 Address = "London",
-                Department = "IT"
+                Department = "IT",
+                SomeCollection = new List<string>()
+                {
+                    "A",
+                    "B"
+                }
             };
 
             //Initializing AutoMapper
@@ -60,7 +67,13 @@ namespace AutoMapperDemo
             //Now, empDTO2 object will having the same values as emp object
             var empDTO2 = mapper.Map<Employee, EmployeeDTO>(emp);
 
-            Console.WriteLine("Name: " + empDTO1.Name + ", Salary: " + empDTO1.Salary + ", Address: " + empDTO1.Address + ", Department: " + empDTO1.Department);
+            Console.WriteLine("Name: " + empDTO1.Name + ", Salary: " + empDTO1.Salary + ", Address: " + empDTO1.Address + ", Department: " + empDTO1.Department + ", SomeCollection:");
+
+            foreach(var entry in empDTO1.SomeCollection)
+            {
+                Console.WriteLine(" >> " + entry);
+            }
+
             Console.ReadLine();
         }
     }

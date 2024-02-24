@@ -59,27 +59,24 @@ namespace AutoMapperDemo
                     new Role() { Id = 3, Name = "C" }
                 }
             };
-            
+
             var empDTO1 = mapper.Map<EmployeeDTO>(emp);
-            var empDTO2 = mapper.Map<Employee, EmployeeDTO>(emp);
-
             Console.WriteLine("empDTO1");
-            Console.WriteLine("Name: " + empDTO1.Name + ", Salary: " + empDTO1.Salary + ", Address: " + empDTO1.Address + ", Department: " + empDTO1.Department + ", SomeCollection:");
+            DisplayEmployeeDTO(empDTO1);
 
-            foreach(var entry in empDTO1.Roles)
-            {
-                Console.WriteLine(" >> " + entry.Id + " " + entry.Name);
-            }
-
+            var empDTO2 = mapper.Map<Employee, EmployeeDTO>(emp);
             Console.WriteLine("empDTO2");
-            Console.WriteLine("Name: " + empDTO2.Name + ", Salary: " + empDTO2.Salary + ", Address: " + empDTO2.Address + ", Department: " + empDTO2.Department + ", SomeCollection:");
+            DisplayEmployeeDTO(empDTO2);
+        }
 
-            foreach (var entry in empDTO2.Roles)
+        private static void DisplayEmployeeDTO(EmployeeDTO employee)
+        {
+            Console.WriteLine("Name: " + employee.Name + ", Salary: " + employee.Salary + ", Address: " + employee.Address + ", Department: " + employee.Department + ", SomeCollection:");
+
+            foreach (var entry in employee.Roles)
             {
                 Console.WriteLine(" >> " + entry.Id + " " + entry.Name);
             }
-
-            Console.ReadLine();
         }
     }
 }

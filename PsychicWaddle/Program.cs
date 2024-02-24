@@ -2,9 +2,16 @@
 
 namespace AutoMapperDemo
 {
+    public class Role
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+    }
+
     public class Employee
     {
-        public IEnumerable<string> SomeCollection { get; set; }
+        public IEnumerable<Role> SomeCollection { get; set; }
         public string Name { get; set; }
         public int Salary { get; set; }
         public string Address { get; set; }
@@ -13,7 +20,7 @@ namespace AutoMapperDemo
 
     public class EmployeeDTO
     {
-        public IEnumerable<string> SomeCollection { get; set; }
+        public IEnumerable<Role> SomeCollection { get; set; }
         public string Name { get; set; }
         public int Salary { get; set; }
         public string Address { get; set; }
@@ -48,10 +55,11 @@ namespace AutoMapperDemo
                 Salary = 20000,
                 Address = "London",
                 Department = "IT",
-                SomeCollection = new List<string>()
+                SomeCollection = new List<Role>()
                 {
-                    "A",
-                    "B"
+                    new Role() { Id = 1, Name = "A" },
+                    new Role() { Id = 2, Name = "B" },
+                    new Role() { Id = 3, Name = "C" }
                 }
             };
 
@@ -71,7 +79,7 @@ namespace AutoMapperDemo
 
             foreach(var entry in empDTO1.SomeCollection)
             {
-                Console.WriteLine(" >> " + entry);
+                Console.WriteLine(" >> " + entry.Id + " " + entry.Name);
             }
 
             Console.ReadLine();
